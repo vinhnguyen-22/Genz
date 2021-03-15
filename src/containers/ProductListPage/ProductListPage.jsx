@@ -50,7 +50,9 @@ const ProductListPage = (props) => {
 
                     <span>4.3</span>
                     <span>3353</span>
-                    <div className="product-info_price">{product.price}</div>
+                    <span className="product-info__price">
+                      {product.price}$
+                    </span>
                   </div>
                 </div>
               ))}

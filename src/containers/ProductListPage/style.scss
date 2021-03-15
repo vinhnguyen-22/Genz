@@ -13,6 +13,7 @@
 }
 .product {
   &-container {
+    display: inline-block;
     width: 200px;
     margin: 0 10px;
 
@@ -35,10 +36,8 @@
     text-align: center;
     font-size: 12px;
 
-    &_name {
-      margin: 5px 0;
-    }
-    &_price {
+    &__price {
+      display: block;
       font-size: 14px;
       font-weight: bold;
       margin: 5px 0;
