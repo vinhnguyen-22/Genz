@@ -15,9 +15,13 @@ const MenuHeader = () => {
     let myCategories = [];
     for (let category of categories) {
       myCategories.push(
-        <li key={category.name}>
+        <li key={category.name} className="cat-sub">
           {category.parentId ? (
-            <a href={category.slug}>{category.name}</a>
+            <a
+              href={`/${category.slug}?cid=${category._id}&type=${category.type}`}
+            >
+              {category.name}
+            </a>
           ) : (
             <span>{category.name}</span>
           )}
@@ -31,7 +35,7 @@ const MenuHeader = () => {
   };
   return (
     <div className="menu-header">
-      <ul>
+      <ul className="cat">
         {category.categories.length > 0
           ? renderCategories(category.categories)
           : null}
