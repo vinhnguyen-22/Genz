@@ -1,5 +1,143 @@
 .header {
   width: 100%;
-  height: 45px;
-  background: #1daaa3;
+  height: 55px;
+  background: #7f8c8d;
+}
+
+.sub-header {
+  max-width: 1100px;
+  width: 100%;
+  height: 100%;
+  display: flex;
+  margin: 0 auto;
+  align-items: center;
+}
+
+.logo {
+  width: 130px;
+  height: 100%;
+  overflow: hidden;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  & .logo-image {
+    width: 30px;
+    height: 30px;
+  }
+}
+
+.explore-text {
+  font-size: 10px;
+  font-style: italic;
+  color: #ff6348;
+}
+.plus-text {
+  font-size: 10px;
+  margin: 0 2px;
+  text-transform: capitalize;
+  font-style: italic;
+  color: white;
+  font-weight: bold;
+}
+.logo .golden-star {
+  width: 10px;
+  height: 10px;
+}
+
+.search-input-container {
+  width: 560px;
+  position: relative;
+  background: white;
+  height: 36px;
+  border-radius: 15px;
+  overflow: hidden;
+  display: flex;
+}
+.search-input {
+  width: 518px;
+  border: 0;
+  height: 36px;
+  outline: none;
+  box-sizing: border-box;
+  padding: 0 10px;
+
+  background-color: #c3c3c3;
+}
+.search-icon-container {
+  display: flex;
+  flex: 1;
+  justify-content: center;
+  align-items: center;
+}
+.right-menu {
+  display: flex;
+  flex: 1;
+  justify-content: flex-end;
+  align-items: center;
+}
+.login-button {
+  display: block;
+  width: 100px;
+  height: 30px;
+  background: #ffffff;
+
+  border-radius: 20px;
+  text-align: center;
+  line-height: 30px;
+  color: black;
+  font-weight: 500;
+  font-size: 16px;
+  cursor: pointer;
+}
+.more {
+  font-weight: bold;
+  color: #fff;
+  display: flex;
+  align-items: center;
+  margin: 0 20px;
+  cursor: pointer;
+}
+.cart {
+  font-weight: bold;
+  color: #fff;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  margin: 0 20px;
+  cursor: pointer;
+}
+
+.author-container {
+  color: #212121;
+  margin: 0 auto;
+  border-radius: 2px;
+  height: 528px;
+  max-width: 750px;
+  min-width: 650px;
+}
+.row {
+  width: 100%;
+  display: flex;
+  flex-flow: row wrap;
+  height: 528px;
+  max-width: 750px;
+  min-width: 650px;
+}
+
+.left-space {
+  width: 40%;
+  height: 100%;
+  color: white;
+  letter-spacing: 1px;
+  background-color: #212121;
+
+  padding: 40px 33px;
+}
+
+.right-space {
+  display: flex;
+  flex: 1;
+  flex-direction: column;
+  align-items: center;
 }
