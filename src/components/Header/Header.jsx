@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import {
   DropdownMenu,
   MaterialButton,
@@ -8,19 +8,73 @@ import {
 import { IoIosArrowDown, IoIosCart, IoIosSearch } from "react-icons/io";
 import logo from "../../assets/img/commerce.png";
 import "./style.scss";
-import { useDispatch } from "react-redux";
+import { useDispatch, useSelector } from "react-redux";
 import { login } from "../../actions";
+import { Link } from "react-router-dom";
 
 const Header = (props) => {
   const [loginModal, setLoginModal] = useState(false);
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
 
+  const auth = useSelector((state) => state.auth);
   const dispatch = useDispatch();
 
   const userLogin = () => {
     dispatch(login({ email, password }));
-    setLoginModal(false);
+  };
+
+  useEffect(() => {
+    if (auth.authenticate) {
+      setLoginModal(false);
+    }
+  }, [auth.authenticate]);
+
+  const renderLoggedInMenu = () => {
+    return (
+      <DropdownMenu
+        menu={<a className="fullName">{auth.user.fullName}</a>}
+        menus={[
+          { label: "My Profile", href: "", icon: null },
+          { label: "SuperCoin Zone", href: "", icon: null },
+          { label: "GenZ Plus Zone", href: "", icon: null },
+          { label: "Orders", href: "", icon: null },
+          { label: "Wishlist", href: "", icon: null },
+          { label: "My Chats", href: "", icon: null },
+          { label: "Coupons", href: "", icon: null },
+          { label: "Rewards", href: "", icon: null },
+          { label: "Motifiations", href: "", icon: null },
+          { label: "Gift Cards", href: "", icon: null },
+          { label: "Logout", href: "", icon: null },
+        ]}
+      />
+    );
+  };
+
+  const renderNonLoggedInMenu = () => {
+    return (
+      <DropdownMenu
+        menu={
+          <a className="login-button" onClick={() => setLoginModal(true)}>
+            Login
+          </a>
+        }
+        menus={[
+          { label: "My Profile", href: "", icon: null },
+          { label: "Flipkart Plus Zone", href: "", icon: null },
+          { label: "Orders", href: "", icon: null },
+          { label: "Wishlist", href: "", icon: null },
+          { label: "Rewards", href: "", icon: null },
+          { label: "Gift Cards", href: "", icon: null },
+        ]}
+        firstMenu={
+          <div className="first-menu">
+            <span>New Customer ?</span>
+            <a style={{ color: "#201d39" }}>Register</a>
+          </div>
+        }
+      />
+    );
   };
 
   return (
@@ -78,9 +132,9 @@ const Header = (props) => {
 
       <div className="sub-header">
         <div className="logo">
-          <a href="">
+          <Link to={"/"}>
             <img src={logo} className="logo-image" alt="" />
-          </a>
+          </Link>
           <a style={{ marginTop: "-10px" }}>
             <span className="explore-text">Explore</span>
             <span className="plus-text">Plus</span>
@@ -106,28 +160,9 @@ const Header = (props) => {
             </div>
           </div>
         </div>
+
         <div className="right-menu">
-          <DropdownMenu
-            menu={
-              <a className="login-button" onClick={() => setLoginModal(true)}>
-                Login
-              </a>
-            }
-            menus={[
-              { label: "My Profile", href: "", icon: null },
-              { label: "Flipkart Plus Zone", href: "", icon: null },
-              { label: "Orders", href: "", icon: null },
-              { label: "Wishlist", href: "", icon: null },
-              { label: "Rewards", href: "", icon: null },
-              { label: "Gift Cards", href: "", icon: null },
-            ]}
-            firstMenu={
-              <div className="first-menu">
-                <span>New Customer?</span>
-                <a style={{ color: "#2874f0" }}>Sign Up</a>
-              </div>
-            }
-          />
+          {!auth.authenticate ? renderNonLoggedInMenu() : renderLoggedInMenu()}
           <DropdownMenu
             menu={
               <a className="more">

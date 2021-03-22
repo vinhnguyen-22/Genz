@@ -62,7 +62,7 @@
   box-sizing: border-box;
   padding: 0 10px;
 
-  background-color: #c3c3c3;
+  background-color: #c2c2c2c2;
 }
 .search-icon-container {
   display: flex;
@@ -90,7 +90,8 @@
   font-size: 16px;
   cursor: pointer;
 }
-.more {
+.more,
+.fullName {
   font-weight: bold;
   color: #fff;
   display: flex;

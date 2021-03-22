@@ -82,7 +82,9 @@
 .headerDropdownContainer {
   position: relative;
   display: inline-block;
+  cursor: pointer;
 }
+
 .firstmenu {
   padding: 15px 20px;
   border-bottom: 1px solid #eee;
@@ -91,21 +93,25 @@
   display: flex;
   justify-content: space-between;
 }
+
 .dropdown {
   right: 50%;
   position: absolute;
+  transform: translateX(50%);
   width: 240px;
   background: #fff;
-  transform: translateX(50%);
   box-shadow: 0 4px 16px 0 rgba(0, 0, 0, 0.2);
   border-radius: 2px;
-  z-index: 1;
-  margin-top: 12px;
+  margin-top: 10px;
+
+  z-index: 1000;
   display: none;
 }
+
 .headerDropdownContainer:hover .dropdown {
   display: block;
 }
+
 .upArrow {
   width: 0;
   height: 0;

@@ -1,5 +1,6 @@
 import React, { useEffect, useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
+import { Link } from "react-router-dom";
 import { getProductsBySlug } from "../../../actions";
 import { generatePublicUrl } from "../../../urlConfig";
 
@@ -37,7 +38,11 @@ const ProductStore = (props) => {
             </div>
             <div>
               {product.productsByPrice[key].map((product) => (
-                <div className="product-container">
+                <Link
+                  to={`/${product.slug}/${product._id}/p`}
+                  style={{ display: "inline-block" }}
+                  className="product-container"
+                >
                   <div className="product-container-image">
                     <img
                       src={generatePublicUrl(product.productPictures[0].img)}
@@ -53,7 +58,7 @@ const ProductStore = (props) => {
                       {product.price}$
                     </span>
                   </div>
-                </div>
+                </Link>
               ))}
             </div>
           </div>
