@@ -6,6 +6,8 @@ import { useDispatch, useSelector } from "react-redux";
 import { isUserLoggedIn } from "./actions";
 import ProductDetailsPage from "./containers/ProductDetailsPage/ProductDetailsPage";
 
+import "./App.css";
+
 const App = () => {
   const dispatch = useDispatch();
 

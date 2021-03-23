@@ -9,7 +9,7 @@ import { IoIosArrowDown, IoIosCart, IoIosSearch } from "react-icons/io";
 import logo from "../../assets/img/commerce.png";
 import "./style.scss";
 import { useDispatch, useSelector } from "react-redux";
-import { login } from "../../actions";
+import { login, signout } from "../../actions";
 import { Link } from "react-router-dom";
 
 const Header = (props) => {
@@ -22,6 +22,10 @@ const Header = (props) => {
 
   const userLogin = () => {
     dispatch(login({ email, password }));
+  };
+
+  const logout = () => {
+    dispatch(signout());
   };
 
   useEffect(() => {
@@ -45,7 +49,7 @@ const Header = (props) => {
           { label: "Rewards", href: "", icon: null },
           { label: "Motifiations", href: "", icon: null },
           { label: "Gift Cards", href: "", icon: null },
-          { label: "Logout", href: "", icon: null },
+          { label: "Logout", href: "#", icon: null, onClick: logout },
         ]}
       />
     );

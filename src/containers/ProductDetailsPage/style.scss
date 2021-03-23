@@ -1,0 +1,137 @@
+.product-description-container {
+  display: flex;
+
+  box-sizing: border-box;
+  padding: 10px;
+
+  & .vertical-image-stack {
+    width: 67px;
+    display: flex;
+    flex-direction: column;
+
+    & .thumbnail {
+      width: 63px;
+      height: 63px;
+      border: 1px solid #f0f0f0;
+
+      overflow: hidden;
+      text-align: center;
+
+      & img {
+        max-width: 100%;
+        max-height: 100%;
+        object-fit: contain;
+      }
+
+      &.active {
+        border: 2px solid #2874f0;
+      }
+    }
+  }
+}
+
+.product-desc-container {
+  width: 485px;
+
+  & .product-desc-container__img {
+    width: 485px;
+    height: 440px;
+
+    overflow: hidden;
+    text-align: center;
+    border: 1px solid #f0f0f0;
+    padding: 10px;
+
+    & > img {
+      max-width: 100%;
+      max-height: 100%;
+      object-fit: contain;
+    }
+  }
+}
+.breed {
+  & ul {
+    padding: 0;
+    margin: 0;
+
+    display: flex;
+    align-items: center;
+
+    & li {
+      list-style: none;
+      margin-right: 5px;
+      display: flex;
+      align-items: center;
+      font-size: 12px;
+
+      & a {
+        text-decoration: none;
+        background-color: white;
+        padding: 5px;
+        color: black;
+        display: inline-block;
+        font-size: 14px;
+      }
+      & div {
+        width: 0;
+        height: 0;
+        border-top: 13px solid transparent;
+        border-bottom: 13px solid transparent;
+
+        border-left: 10px solid white;
+      }
+    }
+  }
+}
+
+.product-details {
+  margin: 0 10px;
+  margin-left: 20px;
+  width: 70%;
+
+  & .product-title {
+    font-size: 28px;
+    color: #212121;
+    font-weight: bold;
+  }
+
+  .rating-count {
+    display: inline-block;
+    background: #fffb00;
+    color: #777;
+    font-weight: 400;
+    font-size: 16px;
+    border-radius: 3px;
+    padding: 2px 5px;
+  }
+  .rating-numbers-reviews {
+    font-size: 14px;
+    color: #777;
+    font-weight: 600;
+    display: inline-block;
+    margin: 0 10px;
+  }
+  .extra-offer,
+  .discount {
+    color: #ff970f;
+    font-size: 16px;
+    margin: 10px 0px;
+    font-weight: 600;
+  }
+  .price-container {
+    align-items: center;
+  }
+  .price {
+    font-size: 28px;
+    font-weight: 600;
+    display: flex;
+    align-items: center;
+  }
+
+  .product-info__desc {
+    margin-top: 10px;
+    background-color: white;
+    padding: 20px;
+    border-radius: 15px;
+  }
+}
