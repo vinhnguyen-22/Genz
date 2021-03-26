@@ -24,7 +24,8 @@
       }
 
       &.active {
-        border: 2px solid #2874f0;
+        border: 2px solid black;
+        border-radius: 10px;
       }
     }
   }
@@ -32,6 +33,62 @@
 
 .product-desc-container {
   width: 485px;
+  position: relative;
+  height: 100%;
+
+  // &:hover .next,
+  // &:hover .prev {
+  //   position: absolute;
+  //   top: 40%;
+  //   border: solid black;
+  //   border-width: 0 3px 3px 0;
+  //   padding: 5px;
+  //   cursor: pointer;
+  // }
+  // & .next {
+  //   left: 90%;
+  //   transform: rotate(315deg);
+  //   -webkit-transform: rotate(315deg);
+  // }
+  // & .prev {
+  //   transform: rotate(135deg);
+  //   -webkit-transform: rotate(135deg);
+  // }
+
+  /* Next & previous buttons */
+  .prev,
+  .next {
+    cursor: pointer;
+    position: absolute;
+    top: 10%;
+    transform: translateY(-50px);
+    padding: 5px;
+    color: rgba(#212121, 0.5);
+    font-weight: bold;
+    font-size: 18px;
+    transition: 0.6s ease;
+    border-radius: 0 3px 3px 0;
+    line-height: 440px;
+    user-select: none;
+  }
+
+  /* Position the "next button" to the right */
+  .prev {
+    right: 90%;
+    border-radius: 3px 0 0 3px;
+  }
+  .next {
+    left: 90%;
+    border-radius: 3px 0 0 3px;
+  }
+
+  /* On hover, add a black background color with a little bit see-through */
+  .prev:hover,
+  .next:hover {
+    color: white;
+
+    background-color: rgba(0, 0, 0, 0.5);
+  }
 
   & .product-desc-container__img {
     width: 485px;
@@ -86,7 +143,6 @@
 
 .product-details {
   margin: 0 10px;
-  margin-left: 20px;
   width: 70%;
 
   & .product-title {

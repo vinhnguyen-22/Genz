@@ -1,16 +1,22 @@
-.card {
-  width: calc(100% - 20px);
-  margin: 10px 10px;
-  border: 1px solid #cecece;
-  box-shadow: 0 0 2px -2px gray;
+.product-store {
+  .card {
+    background: rgba(255, 255, 255, 0.7);
+    box-shadow: 0 8px 32px 0 rgba(255, 230, 150, 0.37);
+    backdrop-filter: blur(2.5px);
+    -webkit-backdrop-filter: blur(2.5px);
+    border-radius: 10px;
+    border: 1px solid rgba(255, 255, 255, 0.18);
 
-  &-header {
-    display: flex;
-    align-items: center;
-    justify-content: space-between;
-    margin: 10px 20px;
+    &-header {
+      background: rgba(0, 0, 0, 0.7);
+      box-shadow: 0 8px 32px 0 rgba(31, 38, 135, 0.37);
+      backdrop-filter: blur(2.5px);
+      -webkit-backdrop-filter: blur(2.5px);
+      border: 1px solid rgba(255, 255, 255, 0.18);
+    }
   }
 }
+
 .product {
   &-container {
     display: inline-block;

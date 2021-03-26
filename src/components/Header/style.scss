@@ -106,7 +106,23 @@
   align-items: center;
   justify-content: center;
   margin: 0 20px;
+  font-size: 20px;
   cursor: pointer;
+  text-decoration: none;
+  position: relative;
+
+  & .badge {
+    position: absolute;
+    top: -20%;
+    left: 100%;
+    width: 14px;
+    height: 14px;
+    font-size: 10px;
+    background-color: #ff6348;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+  }
 }
 
 .author-container {

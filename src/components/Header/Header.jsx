@@ -18,6 +18,17 @@ const Header = (props) => {
   const [password, setPassword] = useState("");
 
   const auth = useSelector((state) => state.auth);
+  const cart = useSelector((state) => state.cart);
+
+  const totalItem = Object.values(cart.cartItems)
+    .map((key, index) => {
+      return key.quantity;
+    })
+    .reduce((acc, cur) => {
+      acc += cur;
+      return acc;
+    }, 0);
+
   const dispatch = useDispatch();
 
   const userLogin = () => {
@@ -183,10 +194,10 @@ const Header = (props) => {
             ]}
           />
           <div>
-            <a className="cart">
+            <Link to="/cart" className="cart">
               <IoIosCart />
-              <span style={{ margin: "0 10px" }}>Cart</span>
-            </a>
+              <span class="badge">{totalItem}</span>
+            </Link>
           </div>
         </div>
       </div>

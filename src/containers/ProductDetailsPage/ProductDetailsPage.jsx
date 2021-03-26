@@ -4,6 +4,7 @@ import { IoIosArrowForward, IoIosStar, IoMdCart } from "react-icons/io";
 import { useDispatch, useSelector } from "react-redux";
 import { Link } from "react-router-dom";
 import { getProductDetailsById } from "../../actions";
+import { addToCart } from "../../actions/cart.action";
 import Layout from "../../components/Layout/Layout";
 import { MaterialButton } from "../../components/MaterialUI";
 import { generatePublicUrl } from "../../urlConfig";
@@ -14,7 +15,6 @@ const ProductDetailsPage = (props) => {
   const product = useSelector((state) => state.product);
 
   const [imgIndex, setImgIndex] = useState(0);
-  const [img, setImg] = useState("");
 
   useEffect(() => {
     const { productId } = props.match.params;
@@ -33,11 +33,6 @@ const ProductDetailsPage = (props) => {
   }
   console.log(product);
 
-  const changeImage = (thumb, index) => {
-    setImg(thumb.img);
-    setImgIndex(index);
-  };
-
   return (
     <Layout>
       {/* <div>{product.productDetails.name}</div> */}
@@ -48,7 +43,7 @@ const ProductDetailsPage = (props) => {
               <div
                 key={index}
                 className={`thumbnail ${index === imgIndex ? "active" : ""}`}
-                onClick={() => changeImage(thumb, index)}
+                onClick={() => setImgIndex(index)}
               >
                 <img src={generatePublicUrl(thumb.img)} alt={thumb.img} />
               </div>
@@ -57,15 +52,40 @@ const ProductDetailsPage = (props) => {
           <div className="product-desc-container">
             <div className="product-desc-container__img">
               <img
-                src={
-                  img === ""
-                    ? generatePublicUrl(
-                        product.productDetails.productPictures[0].img
-                      )
-                    : generatePublicUrl(img)
-                }
+                src={generatePublicUrl(
+                  product.productDetails.productPictures[imgIndex].img
+                )}
                 alt={`${product.productDetails.productPictures[0].img}`}
               />
+              <a
+                className="next"
+                onClick={() => {
+                  if (
+                    imgIndex <
+                    product.productDetails.productPictures.length - 1
+                  ) {
+                    setImgIndex(imgIndex + 1);
+                  } else {
+                    setImgIndex(0);
+                  }
+                }}
+              >
+                &#10095;
+              </a>
+              <a
+                className="prev"
+                onClick={() => {
+                  if (imgIndex > 0) {
+                    setImgIndex(imgIndex - 1);
+                  } else {
+                    setImgIndex(
+                      product.productDetails.productPictures.length - 1
+                    );
+                  }
+                }}
+              >
+                &#10094;
+              </a>
             </div>
 
             {/* action buttons */}
@@ -78,20 +98,27 @@ const ProductDetailsPage = (props) => {
                   marginRight: "5px",
                 }}
                 icon={<IoMdCart />}
+                onClick={() => {
+                  const { _id, name, price } = product.productDetails;
+                  const img = product.productDetails.productPictures[0].img;
+                  dispatch(addToCart({ _id, name, price, img }, 1));
+                  props.history.push("/cart");
+                }}
               />
+
               <MaterialButton
                 title="BUY NOW"
                 bgColor="#fb641b"
                 textColor="#ffffff"
                 style={{
-                  marginLeft: "5px",
+                  marginLeft: "25px",
                 }}
                 icon={<AiFillThunderbolt />}
               />
             </div>
           </div>
         </div>
-        <div>
+        <div style={{ marginLeft: "20px" }}>
           {/* home > category > subCategory > productName */}
           <div className="breed">
             <ul>
