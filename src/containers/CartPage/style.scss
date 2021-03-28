@@ -8,9 +8,7 @@
     border: 1px solid #cecece;
     margin-top: 20px;
 
-    background: rgba(243, 243, 243, 0.2);
-    box-shadow: 0 8px 32px 0 rgba(31, 38, 135, 0.37);
-    backdrop-filter: blur(2.5px);
+    background: #fffefe;
     -webkit-backdrop-filter: blur(2.5px);
     border: 1px solid rgba(255, 255, 255, 0.18);
 
@@ -21,10 +19,26 @@
       font-weight: bold;
 
       background: rgba(255, 38, 0, 0.493);
-      box-shadow: 0 8px 32px 0 rgba(31, 38, 135, 0.37);
       backdrop-filter: blur(2.5px);
       -webkit-backdrop-filter: blur(2.5px);
       border: 1px solid rgba(255, 255, 255, 0.18);
     }
+  }
+}
+
+.checkout-container-btn {
+  width: 100%;
+  display: flex;
+  justify-content: flex-end;
+
+  background: #ffffff;
+
+  padding: 10px 0;
+  box-sizing: border-box;
+  & .materialButton {
+    background: rgba(0, 26, 255, 0.4);
+    backdrop-filter: blur(2.5px);
+    -webkit-backdrop-filter: blur(2.5px);
+    border: 1px solid rgba(255, 255, 255, 0.18);
   }
 }

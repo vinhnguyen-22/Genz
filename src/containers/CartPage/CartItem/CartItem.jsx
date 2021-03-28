@@ -44,7 +44,7 @@ const CartItem = ({ cartItem, onQuantityInc, onQuantityDec }) => {
         >
           <div className="quantity-control">
             <button onClick={onQuantityDecrement}>-</button>
-            <input type="number" readOnly value={qty} />
+            <input type="number" value={qty} name="quantity" />
             <button onClick={onQuantityIncrement}>+</button>
           </div>
 

@@ -2,13 +2,14 @@ import React, { useEffect, useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { addToCart, getCartItems } from "../../actions/cart.action";
 import Layout from "../../components/Layout/Layout";
+import { MaterialButton } from "../../components/MaterialUI";
 import Card from "../../components/UI/Card/Card";
 import { generatePublicUrl } from "../../urlConfig";
 import CartItem from "./CartItem/CartItem.jsx";
 
 import "./style.scss";
 
-const CartPage = () => {
+const CartPage = (props) => {
   const cart = useSelector((state) => state.cart);
   const auth = useSelector((state) => state.auth);
 
@@ -54,7 +55,16 @@ const CartPage = () => {
           ))}
         </Card>
 
-        <Card style={{ width: "500px" }} headerLeft="Price"></Card>
+        <Card style={{ width: "500px" }} headerLeft="Price">
+          <div className="checkout-container-btn">
+            <div style={{ width: "250px" }} className="checkcout-btn">
+              <MaterialButton
+                title="CHECKOUT"
+                onClick={() => props.history.push("/checkout")}
+              />
+            </div>
+          </div>
+        </Card>
       </div>
     </Layout>
   );

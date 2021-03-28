@@ -9,6 +9,7 @@ import ProductDetailsPage from "./containers/ProductDetailsPage/ProductDetailsPa
 import "./App.css";
 import CartPage from "./containers/CartPage/CartPage";
 import { updateCart } from "./actions/cart.action";
+import CheckoutPage from "./containers/CheckoutPage/CheckoutPage";
 
 const App = () => {
   const dispatch = useDispatch();
@@ -30,7 +31,9 @@ const App = () => {
       <Router>
         <Switch>
           <Route path="/" exact component={HomePage} />
+
           <Route path="/cart" component={CartPage} />
+          <Route path="/checkout" component={CheckoutPage} />
           {/**tranh truong hop trinh duyet nhay vao slug trc ta se xep productSlug len trc */}
           <Route
             path="/:productSlug/:productId/p"

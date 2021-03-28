@@ -11,6 +11,7 @@ import "./style.scss";
 import { useDispatch, useSelector } from "react-redux";
 import { login, signout } from "../../actions";
 import { Link } from "react-router-dom";
+import { getCartItems } from "../../actions/cart.action";
 
 const Header = (props) => {
   const [loginModal, setLoginModal] = useState(false);
@@ -42,6 +43,7 @@ const Header = (props) => {
   useEffect(() => {
     if (auth.authenticate) {
       setLoginModal(false);
+      dispatch(getCartItems());
     }
   }, [auth.authenticate]);
 
@@ -102,7 +104,7 @@ const Header = (props) => {
               <p>Get access to your Orders, Wishlist and Recommendations</p>
             </div>
 
-            <div className="right-space">
+            <div className="lright-space">
               <MaterialInput
                 type="text"
                 label="Enter email/mobile phone"
@@ -128,7 +130,7 @@ const Header = (props) => {
                 onClick={userLogin}
               />
 
-              <p>OR</p>
+              <p style={{ textAlign: "center" }}>OR</p>
 
               <MaterialButton
                 title="Request OTP"

@@ -19,7 +19,6 @@ export const login = (user) => {
           user,
         },
       });
-      localStorage.removeItem("cart");
     } else {
       if (res.status === 400) {
         dispatch({

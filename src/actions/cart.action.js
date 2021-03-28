@@ -2,14 +2,13 @@ import { cartConstants } from "./constants";
 import store from "../store/index";
 import axiosIntance from "../helper/axios";
 
-export const getCartItems = () => {
+const getCartItems = () => {
   return async (dispatch) => {
     try {
       dispatch({ type: cartConstants.ADD_TO_CART_REQUEST });
       const res = await axiosIntance.post("/user/getcartitems");
       if (res.status === 200) {
         const { cartItems } = res.data;
-        console.log({ getCartItems: cartItems });
 
         if (cartItems) {
           dispatch({
@@ -24,7 +23,7 @@ export const getCartItems = () => {
   };
 };
 
-export const addToCart = (product, newQuantity = null) => {
+export const addToCart = (product, newQuantity = 1) => {
   return async (dispatch) => {
     const {
       cart: { cartItems },
@@ -40,6 +39,7 @@ export const addToCart = (product, newQuantity = null) => {
     };
 
     if (auth.authenticate) {
+      localStorage.removeItem("cart");
       dispatch({ type: cartConstants.ADD_TO_CART_REQUEST });
 
       const payload = {
@@ -51,7 +51,6 @@ export const addToCart = (product, newQuantity = null) => {
         ],
       };
 
-      console.log(payload);
       const res = await axiosIntance.post("/user/cart/addtocart", payload);
 
       console.log(res);
@@ -83,3 +82,4 @@ export const updateCart = () => {
     }
   };
 };
+export { getCartItems };
