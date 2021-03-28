@@ -11,6 +11,9 @@
   width: 100%;
   box-sizing: border-box;
   padding: 10px 20px;
+  background-color: rgb(255, 167, 95);
+  font-size: 20px;
+  border-bottom: 1px solid #323232;
 }
 .checkout-header.active {
   background: #2874f0;
@@ -24,6 +27,7 @@
   font-size: 12px;
   box-sizing: border-box;
   padding: 3px 7px;
+  cursor: pointer;
 }
 .checkout-header.active .step-number {
   background: #fff;
@@ -32,15 +36,18 @@
   display: inline-block;
   font-size: 14px;
   font-weight: 500;
-  color: #878787;
+  color: white;
   margin-left: 15px;
+  cursor: pointer;
 }
 .checkout-header.active .step-title {
   color: #fff;
 }
-.logged-in-id {
-  font-size: 12px;
-  margin: 0px 0 10px 60px;
+.loggedin-id {
+  font-size: 14px;
+  margin: 0px 0px 10px 10px;
+  color: darkcyan;
+  padding: 10px;
 }
 .address {
   &-container {
@@ -99,8 +106,10 @@
     }
   }
 }
+
 .checkout-body {
   padding: 0 60px;
   padding-bottom: 20px;
   box-sizing: border-box;
+  background-color: white;
 }

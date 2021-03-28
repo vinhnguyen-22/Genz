@@ -182,7 +182,12 @@ const AddressForm = (props) => {
     <div className="checkout-step" style={{ background: "#f5faff" }}>
       <div className="checkout-header">
         <div>
-          <span className="step-number">+</span>
+          <span
+            className="step-number"
+            onClick={() => props.setNewAddress(false)}
+          >
+            -
+          </span>
           <span className="step-title">{"ADD NEW ADDRESS"}</span>
         </div>
       </div>
