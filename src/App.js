@@ -8,7 +8,7 @@ import ProductDetailsPage from "./containers/ProductDetailsPage/ProductDetailsPa
 
 import "./App.css";
 import CartPage from "./containers/CartPage/CartPage";
-import { updateCart } from "./actions/cart.action";
+import { getCartItems, updateCart } from "./actions/cart.action";
 import CheckoutPage from "./containers/CheckoutPage/CheckoutPage";
 
 const App = () => {
@@ -20,7 +20,9 @@ const App = () => {
     if (!auth.authenticate) {
       dispatch(isUserLoggedIn());
     }
-  }, []);
+
+    auth.authenticate && dispatch(getCartItems());
+  }, [auth.authenticate]);
 
   useEffect(() => {
     dispatch(updateCart());

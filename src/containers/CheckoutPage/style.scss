@@ -16,13 +16,13 @@
   border-bottom: 1px solid #323232;
 }
 .checkout-header.active {
-  background: #2874f0;
+  background: #ccc;
 }
 .checkout-header .step-number {
   display: inline-block;
   text-align: center;
   background: #eee;
-  color: #2874f0;
+  color: #ccc;
   border-radius: 3px;
   font-size: 12px;
   box-sizing: border-box;
@@ -55,19 +55,40 @@
     padding: 20px;
     background: #f5faff;
     & .address-info {
-      padding-left: 15px;
+      padding: 15px;
       box-sizing: border-box;
       width: 100%;
+      border: 2px solid salmon;
+      border-radius: 20px;
+
+      &__name {
+        color: darkcyan;
+        font-size: 20px;
+        font-weight: bold;
+      }
+      &__type {
+        margin-left: 20px;
+        background-color: #777777;
+        color: white;
+        font-size: 14px;
+        padding: 2px;
+        text-transform: uppercase;
+      }
+      &__mobilephone {
+        margin-left: 10px;
+        color: chocolate;
+      }
+      &__address {
+        margin-top: 20px;
+        font-style: italic;
+      }
     }
     & .address-detail {
       display: flex;
-      justify-content: space-between;
+      flex-direction: column;
       width: 100%;
       box-sizing: border-box;
-      padding-bottom: 20px;
-      font-weight: 600;
       font-family: "Roboto";
-      font-size: 12px;
       color: #333;
     }
     & .address-type {
@@ -92,14 +113,17 @@
     }
 
     & .edit-address-btn {
-      width: 40px;
-      height: 40px;
+      width: 35px;
+      height: 35px;
       border-radius: 50%;
       border: none;
       outline: none;
       background-color: orange;
+      margin-left: 20px;
       color: white;
       cursor: pointer;
+      font-weight: bold;
+
       &:hover {
         background-color: rgba($color: orange, $alpha: 0.5);
       }

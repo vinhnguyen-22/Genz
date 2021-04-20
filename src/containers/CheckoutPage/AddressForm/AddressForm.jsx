@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { addAddress } from "../../../actions";
 import { MaterialButton, MaterialInput } from "../../../components/MaterialUI";
@@ -61,8 +61,41 @@ const AddressForm = (props) => {
     };
 
     console.log(payload);
+    if (id) {
+      payload.address._id = id;
+    }
     dispatch(addAddress(payload));
+    setSubmitFlag(true);
   };
+
+  useEffect(() => {
+    console.log("addressCount", user.address);
+    if (submitFlag) {
+      console.log("where are we", user);
+
+      let _address = {};
+
+      if (id) {
+        _address = {
+          _id: id,
+          name,
+          mobileNumber,
+          pinCode,
+          locality,
+          address,
+          cityDistrictTown,
+          state,
+          landmark,
+          alternatePhone,
+          addressType,
+        };
+      } else {
+        _address = user.address.slice(user.address.length - 1)[0];
+      }
+
+      props.onSubmitForm(_address);
+    }
+  }, [user.address]);
 
   const renderAddressForm = () => {
     return (
@@ -182,13 +215,10 @@ const AddressForm = (props) => {
     <div className="checkout-step" style={{ background: "#f5faff" }}>
       <div className="checkout-header">
         <div>
-          <span
-            className="step-number"
-            onClick={() => props.setNewAddress(false)}
-          >
-            -
+          <span className="step-number" onClick={props.onClick}>
+            {props.stepNumber}
           </span>
-          <span className="step-title">{"ADD NEW ADDRESS"}</span>
+          <span className="step-title">{props.title}</span>
         </div>
       </div>
       <div className="checkout-body">{renderAddressForm()}</div>
