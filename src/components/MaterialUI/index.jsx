@@ -94,10 +94,12 @@ const DropdownMenu = (props) => {
             props.menus.map((item, index) => (
               <li key={index}>
                 <a
-                  href={item.href}
+                  href={`${item.href}`}
                   onClick={(e) => {
-                    e.preventDefault();
-                    item.onClick && item.onClick();
+                    if (item.onClick) {
+                      e.preventDefault();
+                      item.onClick && item.onClick();
+                    }
                   }}
                 >
                   {item.label}
@@ -110,4 +112,20 @@ const DropdownMenu = (props) => {
   );
 };
 
-export { Modal, MaterialInput, MaterialButton, DropdownMenu };
+const BreadCrumb = (props) => {
+  return (
+    <div className="BreadCrumb">
+      <ul>
+        {props.BreadCrumb &&
+          props.BreadCrumb.map((item, index) => (
+            <li key={index}>
+              <a href={item.href}>{item.name}</a>
+              <div></div>
+            </li>
+          ))}
+      </ul>
+    </div>
+  );
+};
+
+export { Modal, MaterialInput, MaterialButton, DropdownMenu, BreadCrumb };

@@ -53,6 +53,28 @@ export default (state = initState, action) => {
         error: action.payload.error,
       };
       break;
+
+    case userConstants.GET_USER_ORDER_REQUEST:
+      state = {
+        ...state,
+        orderFetching: true,
+      };
+      break;
+    case userConstants.GET_USER_ORDER_SUCCESS:
+      state = {
+        ...state,
+        address: action.payload.address,
+        orderFetching: true,
+        orders: action.payload.orders,
+      };
+      break;
+    case userConstants.GET_USER_ORDER_FAILURE:
+      state = {
+        ...state,
+        error: action.payload.error,
+        orderFetching: false,
+      };
+      break;
   }
   return state;
 };

@@ -106,40 +106,6 @@
     }
   }
 }
-.breed {
-  & ul {
-    padding: 0;
-    margin: 0;
-
-    display: flex;
-    align-items: center;
-
-    & li {
-      list-style: none;
-      margin-right: 5px;
-      display: flex;
-      align-items: center;
-      font-size: 12px;
-
-      & a {
-        text-decoration: none;
-        background-color: white;
-        padding: 5px;
-        color: black;
-        display: inline-block;
-        font-size: 14px;
-      }
-      & div {
-        width: 0;
-        height: 0;
-        border-top: 13px solid transparent;
-        border-bottom: 13px solid transparent;
-
-        border-left: 10px solid white;
-      }
-    }
-  }
-}
 
 .product-details {
   margin: 0 10px;
@@ -153,8 +119,8 @@
 
   .rating-count {
     display: inline-block;
-    background: #fffb00;
-    color: #777;
+    background: lightgoldenrodyellow;
+    color: black;
     font-weight: 400;
     font-size: 16px;
     border-radius: 3px;

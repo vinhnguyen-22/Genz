@@ -6,11 +6,7 @@ import { getCartItems } from "../../actions/cart.action";
 import { addOrder } from "../../actions/user.action";
 
 import Layout from "../../components/Layout/Layout";
-import {
-  MaterialButton,
-  MaterialInput,
-  Anchor,
-} from "../../components/MaterialUI";
+import { MaterialButton, MaterialInput } from "../../components/MaterialUI";
 import PriceDetails from "../../components/PriceDetails/PriceDetails";
 import Card from "../../components/UI/Card/Card";
 import CartPage from "../CartPage/CartPage";
@@ -167,7 +163,7 @@ const CheckoutPage = (props) => {
     }, 0);
 
     const items = Object.keys(cart.cartItems).map((key) => ({
-      ProductId: key,
+      productId: key,
       payablePrice: cart.cartItems[key].price,
       purchasedQty: cart.cartItems[key].quantity,
     }));
@@ -177,6 +173,7 @@ const CheckoutPage = (props) => {
       totalAmount: totalPrice,
       items,
       paymentStatus: "pending",
+      paymentType: "cod",
     };
 
     console.log({ payload });

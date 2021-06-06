@@ -10,7 +10,7 @@ import logo from "../../assets/img/commerce.png";
 import "./style.scss";
 import { useDispatch, useSelector } from "react-redux";
 import { login, signout } from "../../actions";
-import { Link } from "react-router-dom";
+import { Link, Redirect } from "react-router-dom";
 import { getCartItems } from "../../actions/cart.action";
 
 const Header = (props) => {
@@ -54,15 +54,19 @@ const Header = (props) => {
         menus={[
           { label: "My Profile", href: "", icon: null },
           { label: "SuperCoin Zone", href: "", icon: null },
-          { label: "GenZ Plus Zone", href: "", icon: null },
-          { label: "Orders", href: "", icon: null },
+          { label: "Flipkart Plus Zone", href: "", icon: null },
+          {
+            label: "Orders",
+            href: `/account/orders`,
+            icon: null,
+          },
           { label: "Wishlist", href: "", icon: null },
           { label: "My Chats", href: "", icon: null },
           { label: "Coupons", href: "", icon: null },
           { label: "Rewards", href: "", icon: null },
-          { label: "Motifiations", href: "", icon: null },
+          { label: "Notifications", href: "", icon: null },
           { label: "Gift Cards", href: "", icon: null },
-          { label: "Logout", href: "#", icon: null, onClick: logout },
+          { label: "Logout", href: "", icon: null, onClick: logout },
         ]}
       />
     );
@@ -79,7 +83,14 @@ const Header = (props) => {
         menus={[
           { label: "My Profile", href: "", icon: null },
           { label: "Flipkart Plus Zone", href: "", icon: null },
-          { label: "Orders", href: "", icon: null },
+          {
+            label: "Orders",
+            href: `/account/orders`,
+            icon: null,
+            onClick: () => {
+              !auth.authenticate && setLoginModal(true);
+            },
+          },
           { label: "Wishlist", href: "", icon: null },
           { label: "Rewards", href: "", icon: null },
           { label: "Gift Cards", href: "", icon: null },

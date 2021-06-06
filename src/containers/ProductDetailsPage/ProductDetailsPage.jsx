@@ -1,18 +1,18 @@
 import React, { useEffect, useState } from "react";
 import { AiFillThunderbolt } from "react-icons/ai";
-import { IoIosArrowForward, IoIosStar, IoMdCart } from "react-icons/io";
+import { IoIosStar, IoMdCart } from "react-icons/io";
 import { useDispatch, useSelector } from "react-redux";
-import { Link } from "react-router-dom";
 import { getProductDetailsById } from "../../actions";
 import { addToCart } from "../../actions/cart.action";
 import Layout from "../../components/Layout/Layout";
-import { MaterialButton } from "../../components/MaterialUI";
+import { BreadCrumb, MaterialButton } from "../../components/MaterialUI";
 import { generatePublicUrl } from "../../urlConfig";
 import "./style.scss";
 
 const ProductDetailsPage = (props) => {
   const dispatch = useDispatch();
   const product = useSelector((state) => state.product);
+  const category = useSelector((state) => state.category);
 
   const [imgIndex, setImgIndex] = useState(0);
 
@@ -24,15 +24,14 @@ const ProductDetailsPage = (props) => {
         productId,
       },
     };
-
     dispatch(getProductDetailsById(payload));
   }, []);
+  console.log(category);
 
   if (Object.keys(product.productDetails).length === 0) {
     return null;
   }
-  console.log(product);
-
+  console.log({ product });
   return (
     <Layout>
       {/* <div>{product.productDetails.name}</div> */}
@@ -120,29 +119,16 @@ const ProductDetailsPage = (props) => {
         </div>
         <div style={{ marginLeft: "20px" }}>
           {/* home > category > subCategory > productName */}
-          <div className="breed">
-            <ul>
-              <li>
-                <Link to={"/"}>Home</Link>
-                <div></div>
-                <IoIosArrowForward />
-              </li>
-              <li>
-                <a href="#">Mobiles</a>
-                <div></div>
-                <IoIosArrowForward />
-              </li>
-              <li>
-                <a href="#">Samsung</a>
-                <div></div>
-                <IoIosArrowForward />
-              </li>
-              <li>
-                <a href="#">{product.productDetails.name}</a>
-                <div></div>
-              </li>
-            </ul>
-          </div>
+          <BreadCrumb
+            BreadCrumb={[
+              { name: "Home", href: "/" },
+              {
+                name: `${product.productDetails.name}`,
+                href: "/account/orders",
+              },
+            ]}
+          />
+
           {/* product description */}
           <div className="product-details">
             <p className="product-title">{product.productDetails.name}</p>
