@@ -36,7 +36,7 @@ const OrderPage = (props) => {
                 backgroundColor: "white",
               }}
             >
-              <div className="orderItemContainer">
+              <div className="orderItemContainer ">
                 <div className="orderImgContainer">
                   <img
                     className="orderImg"

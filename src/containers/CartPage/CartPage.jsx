@@ -54,7 +54,6 @@ const CartPage = (props) => {
       <div className="cart-container">
         <Card
           headerLeft={`My Cart`}
-          headerRight={<div>Deliver to</div>}
           style={{ width: "calc(100% - 400px)", overflow: "hidden" }}
         >
           {Object.keys(cartItems).map((key, index) => (
@@ -65,17 +64,21 @@ const CartPage = (props) => {
               onQuantityDec={onQuantityDecrement}
             />
           ))}
-        </Card>
 
-        <Card style={{ width: "500px" }} headerLeft="Price">
           <div className="checkout-container-btn">
-            <div style={{ width: "250px" }} className="checkcout-btn">
+            <div
+              style={{ width: "250px", padding: "10px" }}
+              className="checkcout-btn"
+            >
               <MaterialButton
                 title="PLACE ORDER"
                 onClick={() => props.history.push("/checkout")}
               />
             </div>
           </div>
+        </Card>
+
+        <Card style={{ width: "500px", marginLeft: "10px" }} headerLeft="Price">
           <PriceDetails
             totalItem={Object.keys(cart.cartItems).reduce(function (qty, key) {
               return qty + cart.cartItems[key].quantity;

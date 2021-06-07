@@ -105,3 +105,29 @@ export const getOrders = () => {
     }
   };
 };
+
+// single order with complete info and delivery location
+export const getOrder = (payload) => {
+  return async (dispatch) => {
+    try {
+      const res = await axiosIntance.post(`/getOrderDetail`, payload);
+      dispatch({ type: userConstants.GET_USER_ORDER_DETAILS_REQUEST });
+      if (res.status === 200) {
+        console.log(res);
+        const { order } = res.data;
+        dispatch({
+          type: userConstants.GET_USER_ORDER_DETAILS_SUCCESS,
+          payload: { order },
+        });
+      } else {
+        const { error } = res.data;
+        dispatch({
+          type: userConstants.GET_USER_ORDER_DETAILS_FAILURE,
+          payload: { error },
+        });
+      }
+    } catch (error) {
+      console.log(error);
+    }
+  };
+};

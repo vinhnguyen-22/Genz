@@ -20,7 +20,7 @@ const CartItem = ({ cartItem, onQuantityInc, onQuantityDec }) => {
     onQuantityDec(_id, qty - 1);
   };
   return (
-    <div className="cart-item-container">
+    <div className="cart-item-container" style={{ padding: "10px" }}>
       <div className="flex-row">
         <div className="cart-details__img">
           <img src={generatePublicUrl(img)} alt="photo" />

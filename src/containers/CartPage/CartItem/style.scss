@@ -3,7 +3,6 @@
 
   & .flex-row {
     align-items: center;
-    padding: 20px;
 
     & .cart-details {
       &__img {
@@ -69,7 +68,7 @@
   width: 70px;
   height: 30px;
 
-  background: rgb(149, 150, 149);
+  background: cornflowerblue;
   -webkit-backdrop-filter: blur(0px);
   border-radius: 5px;
   border: 1px solid rgba(255, 255, 255, 0.18);
