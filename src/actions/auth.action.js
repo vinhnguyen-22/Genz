@@ -1,6 +1,37 @@
 import { authConstants, cartConstants } from "./constants";
 import axios from "../helper/axios";
 
+export const registration = (user) => {
+  return async (dispatch) => {
+    let res;
+    try {
+      dispatch({ type: authConstants.SIGNUP_REQUEST });
+      res = await axios.post(`/signup`, user);
+      if (res.status === 201) {
+        dispatch({ type: authConstants.SIGNUP_SUCCESS });
+        const { token, user } = res.data;
+        localStorage.setItem("token", token);
+        localStorage.setItem("user", JSON.stringify(user));
+        dispatch({
+          type: authConstants.LOGIN_SUCCESS,
+          payload: {
+            token,
+            user,
+          },
+        });
+      } else {
+        const { error } = res.data;
+        dispatch({ type: authConstants.SIGNUP_FAILURE, payload: { error } });
+      }
+    } catch (error) {
+      dispatch({
+        type: authConstants.SIGNUP_FAILURE,
+        payload: { error: error },
+      });
+    }
+  };
+};
+
 export const login = (user) => {
   return async (dispatch) => {
     dispatch({ type: authConstants.LOGIN_REQUEST });

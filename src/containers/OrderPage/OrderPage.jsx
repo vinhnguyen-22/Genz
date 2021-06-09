@@ -1,6 +1,7 @@
 import React, { useEffect } from "react";
 import { IoIosArrowForward } from "react-icons/io";
 import { useDispatch, useSelector } from "react-redux";
+import { Link } from "react-router-dom";
 import { getOrders } from "../../actions";
 import Layout from "../../components/Layout/Layout";
 import { BreadCrumb } from "../../components/MaterialUI";
@@ -36,7 +37,10 @@ const OrderPage = (props) => {
                 backgroundColor: "white",
               }}
             >
-              <div className="orderItemContainer ">
+              <Link
+                to={`/order_details/${order._id}`}
+                className="orderItemContainer "
+              >
                 <div className="orderImgContainer">
                   <img
                     className="orderImg"
@@ -52,7 +56,7 @@ const OrderPage = (props) => {
                   <div className="orderPrice">{item.payablePrice}$</div>
                   <div>{order.paymentStatus}</div>
                 </div>
-              </div>
+              </Link>
             </Card>
           ));
         })}

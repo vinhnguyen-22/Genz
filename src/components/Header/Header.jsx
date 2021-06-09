@@ -9,12 +9,16 @@ import { IoIosArrowDown, IoIosCart, IoIosSearch } from "react-icons/io";
 import logo from "../../assets/img/commerce.png";
 import "./style.scss";
 import { useDispatch, useSelector } from "react-redux";
-import { login, signout } from "../../actions";
+import { login, signout, registration } from "../../actions";
 import { Link, Redirect } from "react-router-dom";
 import { getCartItems } from "../../actions/cart.action";
 
 const Header = (props) => {
   const [loginModal, setLoginModal] = useState(false);
+  const [signup, setSignup] = useState(false);
+  const [firstName, setFirstName] = useState("");
+  const [lastName, setLastName] = useState("");
+
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
 
@@ -32,10 +36,27 @@ const Header = (props) => {
 
   const dispatch = useDispatch();
 
-  const userLogin = () => {
-    dispatch(login({ email, password }));
+  const userSignup = () => {
+    const user = { firstName, lastName, email, password };
+    if (
+      firstName === "" ||
+      lastName === "" ||
+      email === "" ||
+      password === ""
+    ) {
+      return;
+    }
+
+    dispatch(registration(user));
   };
 
+  const userLogin = () => {
+    if (signup) {
+      userSignup();
+    } else {
+      dispatch(login({ email, password }));
+    }
+  };
   const logout = () => {
     dispatch(signout());
   };
@@ -76,7 +97,13 @@ const Header = (props) => {
     return (
       <DropdownMenu
         menu={
-          <a className="login-button" onClick={() => setLoginModal(true)}>
+          <a
+            className="login-button"
+            onClick={() => {
+              setLoginModal(true);
+              setSignup(false);
+            }}
+          >
             Login
           </a>
         }
@@ -96,9 +123,21 @@ const Header = (props) => {
           { label: "Gift Cards", href: "", icon: null },
         ]}
         firstMenu={
-          <div className="first-menu">
-            <span>New Customer ?</span>
-            <a style={{ color: "#201d39" }}>Register</a>
+          <div className="first-menu" style={{ margin: "10px 10px" }}>
+            <span>New Customer ? </span>
+            <a
+              style={{
+                color: "white",
+                backgroundColor: "cornflowerblue",
+                padding: "5px",
+              }}
+              onClick={() => {
+                setSignup(true);
+                setLoginModal(false);
+              }}
+            >
+              Register
+            </a>
           </div>
         }
       />
@@ -107,15 +146,39 @@ const Header = (props) => {
 
   return (
     <div className="header">
-      <Modal visible={loginModal} onClose={() => setLoginModal(false)}>
+      <Modal
+        visible={loginModal || signup}
+        onClose={() => {
+          setLoginModal(false);
+          setSignup(false);
+        }}
+      >
         <div className="author-container">
           <div className="row">
             <div className="left-space">
-              <h2>Login</h2>
+              <h2>{signup ? "Registration" : "Login"}</h2>
               <p>Get access to your Orders, Wishlist and Recommendations</p>
             </div>
 
-            <div className="lright-space">
+            <div className="right-space">
+              {signup && (
+                <MaterialInput
+                  type="text"
+                  label="Enter firstName"
+                  value={firstName}
+                  onChange={(e) => setFirstName(e.target.value)}
+                />
+              )}
+
+              {signup && (
+                <MaterialInput
+                  type="text"
+                  label="Enter lastName"
+                  value={lastName}
+                  onChange={(e) => setLastName(e.target.value)}
+                />
+              )}
+
               <MaterialInput
                 type="text"
                 label="Enter email/mobile phone"
@@ -130,27 +193,61 @@ const Header = (props) => {
                 onChange={(e) => setPassword(e.target.value)}
                 // rightElement={<a href="#">Forgot ?</a>}
               />
+              {signup ? (
+                <>
+                  <MaterialButton
+                    title="Registration"
+                    bgColor="#fb641b"
+                    textColor="#ffffff"
+                    style={{
+                      margin: "40px 0px 0px 0px",
+                      width: "300px",
+                      borderRadius: "20px",
+                    }}
+                    onClick={() => {
+                      userLogin();
+                      setSignup(false);
+                    }}
+                  />
+                  <MaterialButton
+                    title="Login"
+                    bgColor="cornflowerblue"
+                    textColor="#ffffff"
+                    style={{
+                      margin: "40px 0px 0px 0px",
+                      width: "300px",
+                      borderRadius: "20px",
+                    }}
+                    onClick={() => {
+                      setSignup(false);
+                      setLoginModal(true);
+                    }}
+                  />
+                </>
+              ) : (
+                <>
+                  <MaterialButton
+                    title="Login"
+                    bgColor="#fb641b"
+                    textColor="#ffffff"
+                    style={{
+                      margin: "40px 0px 0px 0px",
+                      width: "300px",
+                      borderRadius: "20px",
+                    }}
+                    onClick={userLogin}
+                  />
 
-              <MaterialButton
-                title="Login"
-                bgColor="#fb641b"
-                textColor="#ffffff"
-                style={{
-                  margin: "40px 0px 20px 0px",
-                }}
-                onClick={userLogin}
-              />
+                  <p style={{ textAlign: "center" }}>or</p>
 
-              <p style={{ textAlign: "center" }}>OR</p>
-
-              <MaterialButton
-                title="Request OTP"
-                bgColor="#50BDC7"
-                textColor="#fff"
-                style={{
-                  margin: "20px 0px",
-                }}
-              />
+                  <MaterialButton
+                    title="Request OTP"
+                    bgColor="#50BDC7"
+                    textColor="#fff"
+                    style={{ width: "300px" }}
+                  />
+                </>
+              )}
             </div>
           </div>
         </div>
