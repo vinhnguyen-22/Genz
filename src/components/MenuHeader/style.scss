@@ -40,7 +40,7 @@
           & a {
             padding: 3px 0;
             display: block;
-            font-size: 14px;
+            font-size: 16px;
             text-decoration: none;
             color: #707070;
             &:hover {
@@ -56,9 +56,10 @@
         padding: 0 20px;
         color: white;
         font-size: 14px;
+        font-weight: bold;
 
         &:hover {
-          color: #1daaa3;
+          color: black;
         }
       }
     }

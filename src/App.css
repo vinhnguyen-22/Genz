@@ -3,6 +3,7 @@
 }
 body {
   background: #f1f3f6;
+  overflow-x: hidden;
 }
 .flex-row {
   display: flex;

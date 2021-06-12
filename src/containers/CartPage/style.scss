@@ -36,9 +36,6 @@
   padding: 10px 0;
   box-sizing: border-box;
   & .materialButton {
-    background: rgba(0, 26, 255, 0.4);
-    backdrop-filter: blur(2.5px);
-    -webkit-backdrop-filter: blur(2.5px);
-    border: 1px solid rgba(255, 255, 255, 0.18);
+    background: cornflowerblue;
   }
 }

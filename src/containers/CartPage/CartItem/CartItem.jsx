@@ -4,7 +4,12 @@ import { generatePublicUrl } from "../../../urlConfig";
 
 import "./style.scss";
 
-const CartItem = ({ cartItem, onQuantityInc, onQuantityDec }) => {
+const CartItem = ({
+  cartItem,
+  onQuantityInc,
+  onQuantityDec,
+  onRemoveCartItem,
+}) => {
   const { _id, name, price, img, quantity } = cartItem;
 
   const [qty, setQty] = useState(quantity);
@@ -49,7 +54,13 @@ const CartItem = ({ cartItem, onQuantityInc, onQuantityDec }) => {
           </div>
 
           <button className="cart-action-btn">Save later</button>
-          <button className="cart-action-btn">Remove</button>
+          <button
+            className="cart-action-btn"
+            style={{ background: "tomato" }}
+            onClick={() => onRemoveCartItem(_id)}
+          >
+            Remove
+          </button>
         </div>
       </div>
     </div>

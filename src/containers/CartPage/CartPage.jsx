@@ -1,6 +1,10 @@
 import React, { useEffect, useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
-import { addToCart, getCartItems } from "../../actions/cart.action";
+import {
+  addToCart,
+  getCartItems,
+  removeCartItem,
+} from "../../actions/cart.action";
 import Layout from "../../components/Layout/Layout";
 import { MaterialButton } from "../../components/MaterialUI";
 import PriceDetails from "../../components/PriceDetails/PriceDetails";
@@ -37,7 +41,10 @@ const CartPage = (props) => {
     const { name, price, img } = cartItems[_id];
     dispatch(addToCart({ _id, name, price, img }, -1));
   };
-  console.log(cartItems);
+
+  const onRemoveCartItem = (_id) => {
+    dispatch(removeCartItem({ productId: _id }));
+  };
 
   if (props.onlyCartItems) {
     return Object.keys(cartItems).map((key, index) => (
@@ -62,6 +69,7 @@ const CartPage = (props) => {
               cartItem={cartItems[key]}
               onQuantityInc={onQuantityIncrement}
               onQuantityDec={onQuantityDecrement}
+              onRemoveCartItem={onRemoveCartItem}
             />
           ))}
 
@@ -71,8 +79,20 @@ const CartPage = (props) => {
               className="checkcout-btn"
             >
               <MaterialButton
-                title="PLACE ORDER"
-                onClick={() => props.history.push("/checkout")}
+                title={
+                  cartItems && // 👈 null and undefined check
+                  Object.keys(cartItems).length === 0 &&
+                  cartItems.constructor === Object
+                    ? "shopping"
+                    : "place order"
+                }
+                onClick={() => {
+                  return cartItems && // 👈 null and undefined check
+                    Object.keys(cartItems).length === 0 &&
+                    cartItems.constructor === Object
+                    ? props.history.push("/")
+                    : props.history.push("/checkout");
+                }}
               />
             </div>
           </div>

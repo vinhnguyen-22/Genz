@@ -3,24 +3,16 @@ import { useDispatch, useSelector } from "react-redux";
 import { Link } from "react-router-dom";
 import { getProductsBySlug } from "../../../actions";
 import Card from "../../../components/UI/Card/Card";
+import Ratings from "../../../components/UI/Ratings/Ratings";
 import { generatePublicUrl } from "../../../urlConfig";
 
 import "./style.scss";
 
 const ProductStore = (props) => {
-  const dispatch = useDispatch();
   const product = useSelector((state) => state.product);
-
-  const [priceRange, setPriceRange] = useState({
-    under50$: "Under 50",
-    under100$: "Under 100",
-    under200$: "Under 200",
-    under300$: "Under 300",
-    under400$: "Under 400",
-    under500$: "Under 500",
-    above: "Above 500",
-  });
-
+  const dispatch = useDispatch();
+  const priceRange = product.priceRange;
+  console.log({ product });
   useEffect(() => {
     const { match } = props;
     dispatch(getProductsBySlug(match.params.slug));
@@ -51,11 +43,13 @@ const ProductStore = (props) => {
                         alt=""
                       />
                     </div>
+
                     <div className="product-info">
                       <div className="product-info_name">{product.name}</div>
 
-                      <span style={{ display: "block" }}>4.3</span>
+                      <Ratings value={"5"} />
                       <span>3353</span>
+
                       <span className="product-info__price">
                         {product.price}$
                       </span>

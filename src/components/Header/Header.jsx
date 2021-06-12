@@ -6,7 +6,7 @@ import {
   Modal,
 } from "../MaterialUI";
 import { IoIosArrowDown, IoIosCart, IoIosSearch } from "react-icons/io";
-import logo from "../../assets/img/commerce.png";
+import logo from "../../assets/img/Picture1.png";
 import "./style.scss";
 import { useDispatch, useSelector } from "react-redux";
 import { login, signout, registration } from "../../actions";
@@ -164,7 +164,7 @@ const Header = (props) => {
               {signup && (
                 <MaterialInput
                   type="text"
-                  label="Enter firstName"
+                  label=" firstName"
                   value={firstName}
                   onChange={(e) => setFirstName(e.target.value)}
                 />
@@ -173,7 +173,7 @@ const Header = (props) => {
               {signup && (
                 <MaterialInput
                   type="text"
-                  label="Enter lastName"
+                  label=" lastName"
                   value={lastName}
                   onChange={(e) => setLastName(e.target.value)}
                 />
@@ -181,14 +181,14 @@ const Header = (props) => {
 
               <MaterialInput
                 type="text"
-                label="Enter email/mobile phone"
+                label=" email/mobile phone"
                 value={email}
                 onChange={(e) => setEmail(e.target.value)}
               />
 
               <MaterialInput
                 type="password"
-                label="Enter Password"
+                label=" Password"
                 value={password}
                 onChange={(e) => setPassword(e.target.value)}
                 // rightElement={<a href="#">Forgot ?</a>}
